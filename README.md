@@ -1,4 +1,7 @@
-# 🚀 NEXUS SFU GATEWAY
+# Nexus SFU Gateway | Go WebRTC Selective Forwarding Unit for Real-Time Video
+
+Nexus SFU Gateway is a Go-based WebRTC media server project built around a Selective Forwarding Unit (SFU) architecture. It provides a starting point for exploring real-time audio/video routing, peer connections, and media gateway services using the Pion WebRTC ecosystem. The README covers installation, health checks, repository structure, and automated test commands.
+
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=2,14,26&height=220&section=header&text=NEXUS%20SFU%20GATEWAY&fontSize=42&fontColor=fff&animation=twinkling&desc=Zero-Latency%20Audio-Visual%20Streaming%20Gateway%20with%20WebRTC%20SFU%20in%20Go&descSize=16&descAlignY=68" width="100%" alt="Nexus SFU Gateway Header" />
