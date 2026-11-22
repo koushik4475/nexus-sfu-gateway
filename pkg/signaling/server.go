@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
+	"strings"
 	"sync"
 	"time"
 
@@ -18,11 +20,24 @@ var (
 )
 
 var upgrader = websocket.Upgrader{
-	CheckOrigin: func(r *http.Request) bool {
-		return true // Allow all CORS for gateway websocket signaling
-	},
+	CheckOrigin: checkSameOrigin,
 	ReadBufferSize:  4096,
 	WriteBufferSize: 4096,
+}
+
+// checkSameOrigin permits non-browser clients without an Origin header and
+// browser clients whose Origin host matches the signaling request host.
+func checkSameOrigin(r *http.Request) bool {
+	origin := r.Header.Get("Origin")
+	if origin == "" {
+		return true
+	}
+
+	u, err := url.Parse(origin)
+	if err != nil || u.Host == "" || (u.Scheme != "http" && u.Scheme != "https") {
+		return false
+	}
+	return strings.EqualFold(u.Host, r.Host)
 }
 
 // SignalMessageType defines protocol actions.
